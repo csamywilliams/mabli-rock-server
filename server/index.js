@@ -5,7 +5,12 @@ const affirmationData = require('./affirmations');
 const app = express();
 
 app.get('/test', async (req, res) => {
-	res.send({ data: affirmationData.affirmations[0] });
+	const { affirmations } = affirmationData;
+
+	const randomAffirmation =
+		affirmations[Math.floor(Math.random() * affirmations.length)];
+
+	res.send({ data: randomAffirmation });
 });
 
 const port = process.env.PORT || 5000;
